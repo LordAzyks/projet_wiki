@@ -11,4 +11,4 @@ typedef struct st_maillon
 } maillon, *ptrmaillon;
 
 encyclopedie inserer(encyclopedie encyclopedie, long identifiant, char *titre, char *contenu);
-void affiche_encyclopedie(encyclopedie e);
+void afficher_encyclopedie(encyclopedie encyclopedie);

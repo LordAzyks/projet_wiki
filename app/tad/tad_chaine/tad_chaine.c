@@ -9,8 +9,8 @@ encyclopedie inserer(encyclopedie e, long identifiant, char *titre, char *conten
     return e;
 }
 
-void affiche_encyclopedie(encyclopedie e) {
-    ptrmaillon parcours = e.premier;
+void afficher_encyclopedie(encyclopedie encyclopedie) {
+    ptrmaillon parcours = encyclopedie.premier;
     while( parcours ) {
         printf("Title: %s\n",parcours->art->titre);
         parcours = parcours->suivant;
