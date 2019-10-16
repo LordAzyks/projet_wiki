@@ -1,13 +1,8 @@
-#include "header.h"
-
-encyclopedie creer_encyclopedie(){
-    encyclopedie e;
-    e.premier = NULL;
-    return e;
-}
+#include "utils.h"
 
 ptrarticle creer_article(long identifiant, char *titre, char *contenu){
     ptrarticle nouveau;
+    nouveau = (ptrarticle)malloc(sizeof(article));
     nouveau->identifiant = identifiant;
     nouveau->titre = titre;
     nouveau->contenu = contenu;
