@@ -1,54 +1,55 @@
 #include "header.h"
 
 
-void remplissage_encyclopedie(encyclopedie e){
+encyclopedie remplissage_encyclopedie(encyclopedie e){
 
     FILE *fichier;
-    if (!(fichier = fopen("../ressources/test.dat","r"))){
+    if (!(fichier = fopen("../ressources/B46_wikipedia_test.dat","r"))){
         printf("Erreur à l'ouverture du fichier");
     } else {
-        char *chaine = malloc (sizeof(char) * 100000);
+        char *chaine = (char*)malloc(sizeof(char) * 100000);
         while (! feof(fichier)){
             fgets(chaine, 100000 , fichier);
-            char *segment = malloc (sizeof(char) * 100000);
             int compteur = 1;
-            int id_val;
-            char *identification = malloc (sizeof(char) * 100);
-            char *titre = malloc (sizeof(char) * 100);
-            char *contenu = malloc (sizeof(char) * 100000);
-            segment = strtok (chaine,"|");
+            long id_val;
+
+            char *titre;
+            char *contenu;
+            
+            char *segment = strtok(chaine,"|");
             while (segment != NULL)
             {
+                int size = strlen(segment)+1;
                 if (compteur == 1){
-                    identification = segment;
-                    id_val = atoi(identification);
+                    char *identification = (char*)malloc(sizeof(char)*size);
+                    strcpy(identification,segment);
+                    id_val = atol(identification);
                 } else if (compteur == 2){
-                    titre = segment;    
+                    titre = (char*)malloc(sizeof(char)*size);
+                    strcpy(titre,segment);
                 } else {
-                    contenu = segment; 
+                    contenu = (char*)malloc(sizeof(char)*size);
+                    strcpy(contenu,segment);
                 }
-                segment = strtok (NULL, "|");
+                segment = strtok(NULL, "|");
                 compteur++;
             }
-            printf(" ID : %s \n Titre : %s \n Contenu : %s \n", identification, titre, contenu);
-            inserer(e,id_val,titre,contenu);
+            e = inserer(e,id_val,titre,contenu);
         }
         free(chaine);
     }
     fclose(fichier);
-
+    return e;
 }
 
 int main(){
     encyclopedie e = creer_encyclopedie();
-    printf("création encyclo \n");
-    
-    e = inserer(e,1,"test1","test");
-    e = inserer(e,2,"test2","test");
-    e = inserer(e,3,"test3","test");
 
-    remplissage_encyclopedie(e);
-    //afficher_encyclopedie(e);
+    e = remplissage_encyclopedie(e);
+    // afficher_encyclopedie(e);
+
+    afficher_encyclopedie(rechercher_article_plein_texte(e,"olympique"));
+
 
     return 0;
 }

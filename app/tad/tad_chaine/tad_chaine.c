@@ -60,7 +60,7 @@ encyclopedie rechercher_article_plein_texte(encyclopedie e, char* mot) {
     while( parcours ) {
         current = parcours->art;
         if(strstr(current->contenu,mot)){
-            res = inserer(res,i,current->titre,current->contenu);
+            res = inserer(res,current->identifiant,current->titre,current->contenu);
             i++;
         }
         parcours = parcours->suivant;
