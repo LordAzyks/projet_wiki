@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 // Strcuture de donnée pour un article
 typedef struct st_article
@@ -9,3 +10,4 @@ typedef struct st_article
 } article, *ptrarticle;
 
 ptrarticle creer_article(long identifiant, char *titre, char *contenu);
+void afficher_article(ptrarticle a);

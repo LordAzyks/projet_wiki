@@ -12,3 +12,7 @@ typedef struct st_maillon
 
 encyclopedie inserer(encyclopedie encyclopedie, long identifiant, char *titre, char *contenu);
 void afficher_encyclopedie(encyclopedie encyclopedie);
+encyclopedie supprimer(encyclopedie e, long identifiant);
+char* rechercher_article(encyclopedie e, long identifiant);
+encyclopedie detruire_encyclopedie(encyclopedie e);
+encyclopedie rechercher_article_plein_texte(encyclopedie e, char* mot);
