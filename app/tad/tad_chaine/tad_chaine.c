@@ -72,6 +72,8 @@ encyclopedie detruire_encyclopedie(encyclopedie e) {
     ptrmaillon parcours = e.premier;
     ptrmaillon tmp;
     while( parcours ) {
+        free(parcours->art->titre);
+        free(parcours->art->contenu);
         free(parcours->art);
         tmp = parcours;
         parcours = parcours->suivant;

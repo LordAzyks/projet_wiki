@@ -1,5 +1,3 @@
-#include <stdlib.h>
-
 #include "../../utils/utils.h"
 #include "../../encyclopedie/encyclopedie.h"
 

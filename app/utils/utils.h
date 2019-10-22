@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 // Strcuture de donnée pour un article
 typedef struct st_article

@@ -4,8 +4,13 @@ ptrarticle creer_article(long identifiant, char *titre, char *contenu) {
     ptrarticle nouveau;
     nouveau = (ptrarticle)malloc(sizeof(article));
     nouveau->identifiant = identifiant;
-    nouveau->titre = titre;
-    nouveau->contenu = contenu;
+
+    nouveau->titre = (char*)malloc(sizeof(char)*(strlen(titre)+1));
+    strcpy(nouveau->titre,titre);
+
+    nouveau->contenu = (char*)malloc(sizeof(char)*(strlen(contenu)+1));
+    strcpy(nouveau->contenu,contenu);
+    
     return nouveau;
 }
 
