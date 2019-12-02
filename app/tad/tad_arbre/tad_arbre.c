@@ -7,7 +7,7 @@ encyclopedie inserer(encyclopedie e, long identifiant, char *titre, char *conten
     nouveau->precedent = NULL;
     nouveau->suivant = NULL;
     if(e.premier){
-/*         printf("\n Racine presente");
+/*      printf("\n Racine presente");
         printf("\n id : %lu", identifiant); */
         ptrmaillon_arbre parcours = e.premier;
         while(parcours){
@@ -40,7 +40,7 @@ encyclopedie inserer(encyclopedie e, long identifiant, char *titre, char *conten
     return e;
 }
 
-void afficher_encyclopedie_arbre(encyclopedie e){
+void afficher_encyclopedie(encyclopedie e){
     ptrmaillon_arbre pere = e.premier;
     ptrmaillon_arbre parcours = e.premier;
     ptrmaillon_arbre fils_gauche = parcours->precedent;
@@ -78,7 +78,7 @@ void parcours_arbre_affichage(encyclopedie e, ptrmaillon_arbre pere, ptrmaillon_
     }
 }
 
-char* recherche_article_arbre(encyclopedie e, long identifiant){
+char* recherche_article(encyclopedie e, long identifiant){
     ptrmaillon_arbre pere = e.premier;
     ptrmaillon_arbre parcours = e.premier;
     ptrmaillon_arbre fils_gauche = parcours->precedent;
@@ -299,8 +299,3 @@ encyclopedie parcours_detruire_encyclopedie(encyclopedie e,ptrmaillon_arbre pere
     free(parcours);
     return e;
 }
-
-
-
-
-    
