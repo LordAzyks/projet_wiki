@@ -1,2 +1,0 @@
-gcc main.c encyclopedie/encyclopedie.c utils/utils.c tad/tad_chaine/tad_chaine.c -o encyclo
-./encyclo
