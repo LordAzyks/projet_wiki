@@ -8,6 +8,12 @@ typedef struct st_maillon
     struct st_maillon *suivant;
 } maillon, *ptrmaillon;
 
+typedef struct st_table{
+    int taille;
+    struct st_maillon **liste;
+} table, *ptrtable;
+
+ptrtable creer_table(int taille);
 encyclopedie inserer(encyclopedie e, long identifiant, char *titre, char *contenu);
 void afficher_encyclopedie(encyclopedie e);
 encyclopedie supprimer(encyclopedie e, long identifiant);

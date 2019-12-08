@@ -22,11 +22,13 @@ void afficher_encyclopedie(encyclopedie e) {
 // Fonction permettant de supprimer un article en connaissant son identifiant
 encyclopedie supprimer(encyclopedie e, long identifiant) {
     ptrmaillon parcours = e.premier;
-    ptrmaillon precedent;
+    ptrmaillon precedent = NULL;
     while( parcours->suivant ) {
         if( parcours->art->identifiant == identifiant) {
+            free(parcours->art->titre);
+            free(parcours->art->contenu);
             free(parcours->art);
-            if( !precedent ){
+            if( !precedent ) {
                 e.premier = parcours->suivant;
                 
             } else {
@@ -49,7 +51,7 @@ char* rechercher_article(encyclopedie e, long identifiant) {
         }
         correspondant = correspondant->suivant;
     }
-    return "Aucune correspondance";
+    return "Aucune correspondance\n";
 }
 
 encyclopedie rechercher_article_plein_texte(encyclopedie e, char* mot) {
