@@ -80,7 +80,7 @@ void parcours_arbre_affichage(encyclopedie e, ptrmaillon_arbre pere, ptrmaillon_
 }
 
 // Chercher et retourne le contenue de l'article en fonction de son identifiant
-char* recherche_article(encyclopedie e, long identifiant){
+char* rechercher_article(encyclopedie e, long identifiant){
     ptrmaillon_arbre pere = e.premier;
     ptrmaillon_arbre parcours = e.premier;
     ptrmaillon_arbre fils_gauche = parcours->precedent;
@@ -316,7 +316,6 @@ encyclopedie parcours_detruire_encyclopedie(encyclopedie e,ptrmaillon_arbre pere
     afficher_article(fils_droit->art); */ 
     free(parcours->art->contenu);
     free(parcours->art->titre);
-    free(parcours->art->identifiant);
     free(parcours);
     return e;
 }

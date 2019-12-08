@@ -3,7 +3,7 @@
 encyclopedie remplissage_encyclopedie(encyclopedie e){
 
     FILE *fichier;
-    if (!(fichier = fopen("../ressources/B46_wikipedia_test.dat","r"))){
+    if (!(fichier = fopen("ressources/B46_wikipedia_test.dat","r"))){
         printf("Erreur à l'ouverture du fichier");
     } else {
         char chaine[100000];

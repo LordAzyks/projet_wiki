@@ -11,9 +11,9 @@ typedef struct st_maillon_arbre
 } maillon_arbre, *ptrmaillon_arbre;
 
 encyclopedie inserer(encyclopedie encyclopedie, long identifiant, char *titre, char *contenu);
-void afficher_encyclopedi(encyclopedie e);
+void afficher_encyclopedie(encyclopedie e);
 encyclopedie supprimer(encyclopedie e, long identifiant);
-char* recherche_article(encyclopedie e, long identifiant);
+char* rechercher_article(encyclopedie e, long identifiant);
 encyclopedie rechercher_article_plein_texte(encyclopedie e, char* mot);
 encyclopedie detruire_encyclopedie(encyclopedie e);
 
