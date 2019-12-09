@@ -1,5 +1,5 @@
 #include "tad_table.h"
-int TAILLE = 1000;
+int TAILLE = 10000;
 
 /**
  * Permet de creer une encyclopedie de taille taille.
@@ -51,14 +51,17 @@ encyclopedie inserer(encyclopedie e, long identifiant, char *titre, char *conten
 void afficher_encyclopedie(encyclopedie e) {
     ptrtable table = e.premier;
     if ( table ) {
+        int c = 0;
         for (int i=0; i < table->taille; i++) {
             ptrmaillon parcours = table->liste[i];
             while( parcours ) {
                 afficher_article(parcours->art);
 
                 parcours = parcours->suivant;
+                c++;
             }
         }
+        printf("\n%d resultat(s) affiche(s)\n",c);
     } else {
         printf("L'encyclopedie est vide\n");
     }

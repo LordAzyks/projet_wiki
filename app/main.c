@@ -1,4 +1,5 @@
 #include "header.h"
+#include <time.h>
 
 void clear_term() {
     #ifdef _WIN32
@@ -13,6 +14,8 @@ int main(){
     long id = 0;
     char str[500];
     char quit[20];
+    clock_t t;
+    double dt;
 
     clear_term();
 
@@ -22,7 +25,7 @@ int main(){
 
     int choix = -1;
     while(choix) {
-        printf("Que voulez vous faire ? :\n");
+        printf("\nQue voulez vous faire ? :\n");
         printf("1 : Afficher l'encyclopedie\n");
         printf("2 : Rechercher un article par identifiant\n");
         printf("3 : Recherche plein texte\n");
@@ -33,7 +36,7 @@ int main(){
         {
         case 0:
             detruire_encyclopedie(e);
-            printf("Aurevoir !\n");
+            printf("Au revoir !\n");
             break;
 
         case 1:
@@ -54,7 +57,11 @@ int main(){
             printf("Que voulez vous rechercher ?\n");
             scanf("%s",str);
             clear_term();
+            t = clock();
             afficher_encyclopedie(rechercher_article_plein_texte(e,str));
+            t = clock() - t;
+            dt = (double)t / CLOCKS_PER_SEC;
+            printf("Recherche effectuee en %lfs\n",dt);
             break;
 
         case 4:

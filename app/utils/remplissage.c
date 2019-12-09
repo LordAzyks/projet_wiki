@@ -3,17 +3,17 @@
 encyclopedie remplissage_encyclopedie(encyclopedie e){
 
     FILE *fichier;
-    if (!(fichier = fopen("ressources/B46_wikipedia_test.dat","r"))){
+    if (!(fichier = fopen("ressources/B46_wikipedia_500K_random.dat","r"))){
         printf("Erreur à l'ouverture du fichier");
     } else {
-        char chaine[100000];
+        char chaine[500000];
         while (! feof(fichier)){
-            fgets(chaine, 100000 , fichier);
+            fgets(chaine, 500000 , fichier);
             int compteur = 1;
             long id_val;
 
-            char titre[100];
-            char contenu[100000];
+            char titre[1000];
+            char contenu[500000];
             
             char *segment = strtok(chaine,"|");
             while (segment != NULL)

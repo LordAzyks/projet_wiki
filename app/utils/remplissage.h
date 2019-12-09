@@ -1,3 +1,2 @@
-#include "../tad/tad_chaine/tad_chaine.h"
-
+#include "../tad/tad_arbre/tad_arbre.h"
 encyclopedie remplissage_encyclopedie(encyclopedie e);

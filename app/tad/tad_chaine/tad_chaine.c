@@ -25,11 +25,14 @@ encyclopedie inserer(encyclopedie e, long identifiant, char *titre, char *conten
  */
 void afficher_encyclopedie(encyclopedie e) {
     ptrmaillon parcours = e.premier;
+    int c = 0;
     while( parcours ) {
         afficher_article(parcours->art);
 
         parcours = parcours->suivant;
+        c++;
     }
+    printf("\n%d resultat(s) affiche(s)\n",c);
 }
 
 
