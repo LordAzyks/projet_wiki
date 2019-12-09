@@ -16,6 +16,7 @@ int main(){
     char quit[20];
     clock_t t;
     double dt;
+    encyclopedie r;
 
     clear_term();
 
@@ -58,9 +59,10 @@ int main(){
             scanf("%s",str);
             clear_term();
             t = clock();
-            afficher_encyclopedie(rechercher_article_plein_texte(e,str));
+            r = rechercher_article_plein_texte(e,str);
             t = clock() - t;
             dt = (double)t / CLOCKS_PER_SEC;
+            afficher_encyclopedie(r);
             printf("Recherche effectuee en %lfs\n",dt);
             break;
 

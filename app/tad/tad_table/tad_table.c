@@ -52,7 +52,7 @@ void afficher_encyclopedie(encyclopedie e) {
     ptrtable table = e.premier;
     if ( table ) {
         int c = 0;
-        for (int i=0; i < table->taille; i++) {
+        for (int i=0; i <= table->taille; i++) {
             ptrmaillon parcours = table->liste[i];
             while( parcours ) {
                 afficher_article(parcours->art);
@@ -139,13 +139,12 @@ encyclopedie rechercher_article_plein_texte(encyclopedie e, char* mot) {
     ptrtable table = e.premier;
     if ( table ) {
         ptrarticle current;
-        for (int i=0; i < table->taille; i++) {
+        for (int i=0; i <= table->taille; i++) {
             ptrmaillon parcours = table->liste[i];
             while( parcours ) {
                 current = parcours->art;
                 if(strstr(current->contenu,mot)){
                     res = inserer(res,current->identifiant,current->titre,current->contenu);
-                    i++;
                 }
 
                 parcours = parcours->suivant;
