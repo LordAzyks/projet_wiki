@@ -1,8 +1,17 @@
 #include "header.h"
 
+void clear_term() {
+    #ifdef _WIN32
+    system("cls");
+    #else
+    system("clear");
+    #endif
+}
+
 int main(){
     long id = 0;
     char str[500];
+    char quit[20];
 
     encyclopedie e = creer_encyclopedie();
     printf("Une encyclopedie a ete creee.\n");
@@ -10,6 +19,7 @@ int main(){
 
     int choix = -1;
     while(choix) {
+        clear_term();
         printf("\nQue voulez vous faire ? :\n");
         printf("1 : Afficher l'encyclopedie\n");
         printf("2 : Rechercher un article par identifiant\n");
@@ -26,6 +36,8 @@ int main(){
 
         case 1:
             afficher_encyclopedie(e);
+            printf("Taper un caractere pour quitter\n");
+            scanf("%s",quit);
             break;
 
         case 2:

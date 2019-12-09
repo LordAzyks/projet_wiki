@@ -18,4 +18,4 @@ table:
 
 clean:
 	rm -f projet_wiki_chaine projet_wiki_arbre projet_wiki_table
-	@echo "Tout les executables ont ete supprime."
+	@echo "Tous les executables ont ete supprimes."

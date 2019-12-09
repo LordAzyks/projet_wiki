@@ -41,10 +41,12 @@ encyclopedie inserer(encyclopedie e, long identifiant, char *titre, char *conten
 // Affichage de l'encyclopédie
 void afficher_encyclopedie(encyclopedie e){
     ptrmaillon_arbre pere = e.premier;
-    ptrmaillon_arbre parcours = e.premier;
-    ptrmaillon_arbre fils_gauche = parcours->precedent;
-    ptrmaillon_arbre fils_droit = parcours->suivant;
-    parcours_arbre_affichage(e,pere,parcours,fils_gauche,fils_droit);
+    if( pere ) {
+        ptrmaillon_arbre parcours = e.premier;
+        ptrmaillon_arbre fils_gauche = parcours->precedent;
+        ptrmaillon_arbre fils_droit = parcours->suivant;
+        parcours_arbre_affichage(e,pere,parcours,fils_gauche,fils_droit);
+    }
 }
 
 // Parcours d'affichage de l'encyclopédie
@@ -170,6 +172,7 @@ encyclopedie supprimer(encyclopedie e, long identifiant){
         }
         free(sup_parcours->art->contenu);
         free(sup_parcours->art->titre);
+        free(sup_parcours->art);
         free(sup_parcours);
     // S'il y a des descendants 
     }else if(sup_fils_gauche != NULL && sup_fils_droit != NULL){
@@ -191,6 +194,7 @@ encyclopedie supprimer(encyclopedie e, long identifiant){
             parcours = sup_parcours;
             free(sup_parcours->art->contenu);
             free(sup_parcours->art->titre);
+            free(sup_parcours->art);
             free(sup_parcours);
         } else {
             //printf("\n test sup droit \n");
@@ -219,6 +223,7 @@ encyclopedie supprimer(encyclopedie e, long identifiant){
             parcours->suivant = sup_parcours->suivant;
             free(sup_parcours->art->contenu);
             free(sup_parcours->art->titre);
+            free(sup_parcours->art);
             free(sup_parcours);
         }
     }else if(sup_fils_gauche != NULL || sup_fils_droit != NULL){
@@ -229,6 +234,7 @@ encyclopedie supprimer(encyclopedie e, long identifiant){
         }
         free(sup_parcours->art->contenu);
         free(sup_parcours->art->titre);
+        free(sup_parcours->art);
         free(sup_parcours);
     }
     return e;
@@ -310,12 +316,9 @@ encyclopedie parcours_detruire_encyclopedie(encyclopedie e,ptrmaillon_arbre pere
         fils_gauche = parcours->precedent;
         fils_droit = parcours->suivant;
     }
-/*  afficher_article(pere->art);
-    afficher_article(parcours->art);   
-    afficher_article(fils_gauche->art);
-    afficher_article(fils_droit->art); */ 
     free(parcours->art->contenu);
     free(parcours->art->titre);
+    free(parcours->art);   
     free(parcours);
     return e;
 }
