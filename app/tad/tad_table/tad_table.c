@@ -1,6 +1,11 @@
 #include "tad_table.h"
 int TAILLE = 1000;
 
+/**
+ * Permet de creer une encyclopedie de taille taille.
+ * 
+ * @param taille (int) : le nombre d'alveoles dans la table
+ */
 ptrtable creer_table(int taille) {
     ptrtable table = (ptrtable)malloc(sizeof(table));
     table->taille = taille;
@@ -15,6 +20,15 @@ int hachage(ptrtable table, long identifiant) {
     return identifiant%table->taille;
 }
 
+/**
+ * Permet d'inserer un article dans une encyclopedie.
+ * L'article comprend un identifiant, un titre et un contenu.
+ * 
+ * @param e (encylcopedie) : L'encyclopedie cible
+ * @param identifiant (long) : L'identifiant de l'article a inserer.
+ * @param titre (char*) : Le titre de l'article a inserer.
+ * @param contenu (char*) : Le contenu de l'article a inserer.
+ */
 encyclopedie inserer(encyclopedie e, long identifiant, char *titre, char *contenu) {
     if ( e.premier == NULL) {
         e.premier = creer_table(TAILLE);
@@ -29,6 +43,11 @@ encyclopedie inserer(encyclopedie e, long identifiant, char *titre, char *conten
     return e;
 }
 
+/**
+ * Permet d'afficher une encyclopedie.
+ * 
+ * @param e (encylcopedie) : L'encyclopedie cible
+ */
 void afficher_encyclopedie(encyclopedie e) {
     ptrtable table = e.premier;
     if ( table ) {
@@ -45,6 +64,13 @@ void afficher_encyclopedie(encyclopedie e) {
     }
 }
 
+/**
+ * Permet de supprimer un article par identifiant dans une encyclopedie.
+ * Le retour est une encyclopedie.
+ * 
+ * @param e (encylcopedie) : L'encyclopedie cible
+ * @param identifiant (long) : L'article a supprimer
+ */
 encyclopedie supprimer(encyclopedie e, long identifiant) {
     ptrtable table = e.premier;
     if ( table ) {
@@ -74,6 +100,13 @@ encyclopedie supprimer(encyclopedie e, long identifiant) {
     return e;
 }
 
+/**
+ * Permet de rechercher un article par identifiant dans une encyclopedie.
+ * Le retour est une chaine de carateres.
+ * 
+ * @param e (encylcopedie) : L'encyclopedie cible
+ * @param identifiant (long) : L'article a rechercher
+ */
 char* rechercher_article(encyclopedie e, long identifiant) {
     ptrtable table = e.premier;
     if ( table ) {
@@ -91,6 +124,13 @@ char* rechercher_article(encyclopedie e, long identifiant) {
     return "Aucune correspondance\n";
 }
 
+/**
+ * Permet de rechercher un mot dans une encyclopedie.
+ * Le retour est une encylcopedie (vide si aucun resultat).
+ * 
+ * @param e (encylcopedie) : L'encyclopedie cible
+ * @param mot (char*) : Le mot a rechercher
+ */
 encyclopedie rechercher_article_plein_texte(encyclopedie e, char* mot) {
     encyclopedie res = creer_encyclopedie();
     ptrtable table = e.premier;
@@ -114,6 +154,15 @@ encyclopedie rechercher_article_plein_texte(encyclopedie e, char* mot) {
     return res;
 }
 
+/**
+ * Permet de detruire une encyclopedie.
+ * Le retour est une encyclopedie vide.
+ * Chaque article (titre, contenu et structure) sera free().
+ * Chaque maillon sera free().
+ * La table sera free()
+ * 
+ * @param e (encylcopedie) : L'encyclopedie cible
+ */
 encyclopedie detruire_encyclopedie(encyclopedie e) {
     ptrtable table = e.premier;
     if ( table ) {

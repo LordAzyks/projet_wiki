@@ -1,6 +1,19 @@
 #include "tad_arbre.h"
 
-// Insertion d'un article dans l'arbre
+ptrmaillon_arbre parcours_arbre(encyclopedie e,ptrmaillon_arbre *pere,ptrmaillon_arbre parcours,ptrmaillon_arbre *fils_gauche,ptrmaillon_arbre *fils_droit,long id);
+void parcours_arbre_affichage(encyclopedie e, ptrmaillon_arbre pere ,ptrmaillon_arbre parcour, ptrmaillon_arbre fils_gauche, ptrmaillon_arbre fils_droit);
+encyclopedie parcours_arbre_recherche(encyclopedie e, encyclopedie e_recherche,ptrmaillon_arbre pere, ptrmaillon_arbre parcours, ptrmaillon_arbre fils_gauche, ptrmaillon_arbre fils_droit, char* mot);
+encyclopedie parcours_detruire_encyclopedie(encyclopedie e,ptrmaillon_arbre pere, ptrmaillon_arbre parcours, ptrmaillon_arbre fils_gauche, ptrmaillon_arbre fils_droit);
+
+/**
+ * Permet d'inserer un article dans une encyclopedie.
+ * L'article comprend un identifiant, un titre et un contenu.
+ * 
+ * @param e (encylcopedie) : L'encyclopedie cible
+ * @param identifiant (long) : L'identifiant de l'article a inserer.
+ * @param titre (char*) : Le titre de l'article a inserer.
+ * @param contenu (char*) : Le contenu de l'article a inserer.
+ */
 encyclopedie inserer(encyclopedie e, long identifiant, char *titre, char *contenu) {
     ptrmaillon_arbre nouveau = (ptrmaillon_arbre)malloc(sizeof(maillon_arbre));
     nouveau->art = creer_article(identifiant,titre,contenu);
@@ -38,7 +51,11 @@ encyclopedie inserer(encyclopedie e, long identifiant, char *titre, char *conten
     return e;
 }
 
-// Affichage de l'encyclopédie
+/**
+ * Permet d'afficher une encyclopedie.
+ * 
+ * @param e (encylcopedie) : L'encyclopedie cible
+ */
 void afficher_encyclopedie(encyclopedie e){
     ptrmaillon_arbre pere = e.premier;
     if( pere ) {
@@ -80,8 +97,13 @@ void parcours_arbre_affichage(encyclopedie e, ptrmaillon_arbre pere, ptrmaillon_
         afficher_article(parcours->art);
     }
 }
-
-// Chercher et retourne le contenue de l'article en fonction de son identifiant
+/**
+ * Permet de rechercher un article par identifiant dans une encyclopedie.
+ * Le retour est une chaine de carateres.
+ * 
+ * @param e (encylcopedie) : L'encyclopedie cible
+ * @param identifiant (long) : L'article a rechercher
+ */
 char* rechercher_article(encyclopedie e, long identifiant){
     ptrmaillon_arbre pere = e.premier;
     ptrmaillon_arbre parcours = e.premier;
@@ -142,7 +164,13 @@ ptrmaillon_arbre parcours_arbre(encyclopedie e,ptrmaillon_arbre *pere,ptrmaillon
     return parcours;
 }
 
-// Supprime un article en fonction de son identifiant
+/**
+ * Permet de supprimer un article par identifiant dans une encyclopedie.
+ * Le retour est une encyclopedie.
+ * 
+ * @param e (encylcopedie) : L'encyclopedie cible
+ * @param identifiant (long) : L'article a supprimer
+ */
 encyclopedie supprimer(encyclopedie e, long identifiant){
     ptrmaillon_arbre sup_pere = e.premier;
     ptrmaillon_arbre sup_parcours = e.premier;
@@ -240,8 +268,13 @@ encyclopedie supprimer(encyclopedie e, long identifiant){
     return e;
 }
 
-
-// Créer une encyclopédie contenant tous les articles contenant une chaine de caractères précise
+/**
+ * Permet de rechercher un mot dans une encyclopedie.
+ * Le retour est une encylcopedie (vide si aucun resultat).
+ * 
+ * @param e (encylcopedie) : L'encyclopedie cible
+ * @param mot (char*) : Le mot a rechercher
+ */
 encyclopedie rechercher_article_plein_texte(encyclopedie e, char* mot){
     encyclopedie e_recherche = creer_encyclopedie();
     ptrmaillon_arbre pere = e.premier;
@@ -283,7 +316,15 @@ encyclopedie parcours_arbre_recherche(encyclopedie e, encyclopedie e_recherche,p
     return e_recherche;
 }
 
-// Détruit l'encyclopédie
+/**
+ * Permet de detruire une encyclopedie.
+ * Le retour est une encyclopedie vide.
+ * Chaque article (titre, contenu et structure) sera free().
+ * Chaque maillon sera free().
+ * La table sera free()
+ * 
+ * @param e (encylcopedie) : L'encyclopedie cible
+ */
 encyclopedie detruire_encyclopedie(encyclopedie e){
     ptrmaillon_arbre pere = e.premier;
     ptrmaillon_arbre parcours = e.premier;
