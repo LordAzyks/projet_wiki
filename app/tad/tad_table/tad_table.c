@@ -130,6 +130,8 @@ encyclopedie detruire_encyclopedie(encyclopedie e) {
             }
         }
         e.premier = NULL;
+        free(table->liste);
+        free(table);
     } else {
         printf("L'encyclopedie est vide\n");
     }
